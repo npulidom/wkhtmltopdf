@@ -1,0 +1,10 @@
+#!/bin/sh
+
+# build
+docker build -t 522159568815.dkr.ecr.us-east-1.amazonaws.com/wkhtmltopdf .
+
+# docker aws ecr login & image push
+if [ "$#" -ne 0 ] && [ "$1" = "push" ]; then
+	eval $(aws ecr get-login --region us-east-1 --profile cp-ecs)
+	docker push 522159568815.dkr.ecr.us-east-1.amazonaws.com/wkhtmltopdf
+fi

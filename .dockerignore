@@ -1,0 +1,12 @@
+# Linux, OSX
+*~
+*.swp
+.DS_Store
+
+# git
+.git
+.gitignore
+
+# files
+*.md
+*.log

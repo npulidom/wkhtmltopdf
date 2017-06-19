@@ -2,23 +2,16 @@
 FROM alpine:3.6
 
 # packages
-RUN apk update && apk upgrade && apk add --update --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing \
+RUN apk update && apk upgrade && apk add --update --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing --allow-untrusted \
 		bash \
+		python \
 		py-pip \
-		glib \
-		libgcc \
-		libstdc++ \
-		libx11 \
-		libxrender \
-		libxext \
-		libintl \
-		libcrypto1.0 \
-		libssl1.0 \
-		ttf-dejavu \
-		ttf-droid \
+		xvfb \
+		dbus \
+		fontconfig \
 		ttf-freefont \
-		ttf-liberation \
-		ttf-ubuntu-font-family
+		wkhtmltopdf \
+		&& rm -rf /var/cache/apk/*
 		
 # pythons installs
 RUN pip install \
@@ -26,14 +19,18 @@ RUN pip install \
 		executor \
 		gunicorn
 		
-# download binary
-RUN curl -sLo /usr/bin/wkhtmltopdf https://github.com/Civitium/docker-alpine-wkhtmltopdf/blob/master/wkhtmltopdf && chmod +x /usr/bin/wkhtmltopdf
+# Wrapper for xvfb
+COPY wrapper /tmp/
+RUN mv /usr/bin/wkhtmltopdf /usr/bin/wkhtmltopdf-origin && \
+    mv /tmp/wrapper /usr/bin/wkhtmltopdf && chmod +x /usr/bin/wkhtmltopdf
+
+WORKDIR /root
 
 # copy app
-COPY app.py /app.py
+COPY app.py .
 EXPOSE 80
 
-ENTRYPOINT ["usr/local/bin/gunicorn"]
+ENTRYPOINT ["/usr/bin/gunicorn"]
 
-# Show the extended help
+#run app
 CMD ["-b", "0.0.0.0:80", "--log-file", "-", "app:application"]

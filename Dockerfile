@@ -3,22 +3,22 @@ FROM alpine:3.6
 
 # packages
 RUN apk update && apk upgrade && apk add --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing --allow-untrusted \
-		bash \
-		python \
-		py-pip \
-		xvfb \
-		dbus \
-		fontconfig \
-		ttf-freefont \
-		wkhtmltopdf \
-		&& rm -rf /var/cache/apk/*
-		
+	bash \
+	python \
+	py-pip \
+	xvfb \
+	dbus \
+	fontconfig \
+	ttf-freefont \
+	wkhtmltopdf \
+	&& rm -rf /var/cache/apk/*
+
 # pythons installs
 RUN pip install \
-		werkzeug \
-		executor \
-		gunicorn
-		
+	werkzeug \
+	executor \
+	gunicorn
+
 # Wrapper for xvfb
 COPY wrapper /tmp/
 RUN mv /usr/bin/wkhtmltopdf /usr/bin/wkhtmltopdf-origin && \

@@ -2,7 +2,7 @@
 FROM alpine:3.6
 
 # packages
-RUN apk update && apk upgrade && apk add --update --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing --allow-untrusted \
+RUN apk update && apk upgrade && apk add --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing --allow-untrusted \
 		bash \
 		python \
 		py-pip \

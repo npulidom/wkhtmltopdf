@@ -22,7 +22,7 @@ RUN pip install \
 # Wrapper for xvfb
 COPY wrapper /tmp/
 RUN mv /usr/bin/wkhtmltopdf /usr/bin/wkhtmltopdf-origin && \
-    mv /tmp/wrapper /usr/bin/wkhtmltopdf && chmod +x /usr/bin/wkhtmltopdf
+		mv /tmp/wrapper /usr/bin/wkhtmltopdf && chmod +x /usr/bin/wkhtmltopdf
 
 WORKDIR /root
 

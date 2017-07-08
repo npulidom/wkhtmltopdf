@@ -2,7 +2,7 @@
 FROM alpine:3.6
 
 # packages
-RUN apk update && apk upgrade && apk add --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing --allow-untrusted \
+RUN apk update && apk add -U --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing --allow-untrusted \
 	bash \
 	python \
 	py-pip \
@@ -13,24 +13,28 @@ RUN apk update && apk upgrade && apk add --no-cache --repository=http://dl-4.alp
 	wkhtmltopdf \
 	&& rm -rf /var/cache/apk/*
 
-# pythons installs
+# python installs
 RUN pip install \
 	werkzeug \
 	executor \
 	gunicorn
 
-# Wrapper for xvfb
+# wrapper for xvfb
 COPY wrapper /tmp/
 RUN mv /usr/bin/wkhtmltopdf /usr/bin/wkhtmltopdf-origin && \
-		mv /tmp/wrapper /usr/bin/wkhtmltopdf && chmod +x /usr/bin/wkhtmltopdf
+	mv /tmp/wrapper /usr/bin/wkhtmltopdf && chmod +x /usr/bin/wkhtmltopdf
 
+# set working dir
 WORKDIR /root
 
 # copy app
 COPY app.py .
+
+# port expose
 EXPOSE 80
 
+# entry point
 ENTRYPOINT ["/usr/bin/gunicorn"]
 
-#run app
+# run app
 CMD ["-b", "0.0.0.0:80", "--log-file", "-", "app:application"]

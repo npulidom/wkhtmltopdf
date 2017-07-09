@@ -7,14 +7,15 @@ Container service for [wkhtmltopdf](https://wkhtmltopdf.org/).
 
 Run Container
 `docker run -d npulidom/img-api`
-
+  
 Replace **PORT** with container exposed port.
 
 ```
 curl -X POST -vv -F 'file=@test.html' http://localhost:PORT -o test.pdf
 ```
+   
+### PHP example
 
-PHP example
 ```
 <?php
 

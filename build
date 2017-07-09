@@ -5,6 +5,5 @@ docker build -t npulidom/wkhtmltopdf .
 
 # image push
 if [ "$#" -ne 0 ] && [ "$1" = "push" ]; then
-	eval $(aws ecr get-login --region us-east-1 --profile cp-ecs)
 	docker push npulidom/wkhtmltopdf
 fi

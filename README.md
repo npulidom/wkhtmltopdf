@@ -1,7 +1,8 @@
 wkhtmltopdf micro api
 =====================
 
-Container service for [wkhtmltopdf](https://wkhtmltopdf.org/).
+Alpine Container service for [wkhtmltopdf](https://wkhtmltopdf.org/). 
+Size: 209 MB
 
 ## Usage
 

@@ -17,7 +17,7 @@ curl -X POST -vv -F 'file=@test.html' http://localhost:PORT -o test.pdf
    
 ### PHP example
 
-```
+```php
 <?php
 
 	$html = "<html><body>Hello world</body></html>";

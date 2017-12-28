@@ -33,6 +33,7 @@ def application(request):
 			payload = json.loads(request.data)
 			source_file.write(payload['contents'].decode('base64'))
 			options = payload.get('options', {})
+
 		elif request.files:
 			# First check if any files were uploaded
 			source_file.write(request.files['file'].read())
@@ -46,17 +47,32 @@ def application(request):
 
 		# Add Global Options
 		if options:
+
 			for option, value in options.items():
-				args.append('--%s' % option)
+
+				# uppercase consider single hyphen
+				if option.isupper():
+					args.append('-%s' % option)
+				else:
+					args.append('--%s' % option)
+
 				if value:
-					args.append('"%s"' % value)
+
+					if value.isdigit():
+						args.append('%s' % value)
+					else:
+						args.append('"%s"' % value)
 
 		# Add source file name and output file name
 		file_name = source_file.name
 		args += [file_name, file_name + ".pdf"]
 
+		cmd = ' '.join(args)
+
+		print "Executing > " + cmd
+
 		# Execute the command using executor
-		execute(' '.join(args))
+		execute(cmd)
 
 		return Response(
 			wrap_file(request.environ, open(file_name + '.pdf')),

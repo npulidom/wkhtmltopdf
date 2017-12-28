@@ -25,7 +25,7 @@ curl -X POST -vv -F 'file=@test.html' http://localhost:PORT -o test.pdf
 	// set request body
 	$body = json_encode([
 		"contents" => base64_encode($html),
-		"options"  => ["page-size" => "Letter"] // for no margins use: ["B" => "0", "L" => "0", "R" => "0", "T" => "0"]
+		"options"  => ["page-size" => "Letter"] // remove margins using: ["B" => "0", "L" => "0", "R" => "0", "T" => "0"]
 	]);
 
 	// set header

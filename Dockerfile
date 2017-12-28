@@ -20,7 +20,7 @@ RUN pip install \
 	executor \
 	gunicorn
 
-# wrapper for xvfb
+# wrapper for xvfb (x11)
 COPY wrapper /tmp/
 RUN mv /usr/bin/wkhtmltopdf /usr/bin/wkhtmltopdf-origin && \
 	mv /tmp/wrapper /usr/bin/wkhtmltopdf && chmod +x /usr/bin/wkhtmltopdf

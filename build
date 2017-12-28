@@ -3,7 +3,7 @@
 # build
 docker build -t npulidom/wkhtmltopdf .
 
-# image push
+# push image to docker hub
 if [ "$#" -ne 0 ] && [ "$1" = "push" ]; then
 	docker push npulidom/wkhtmltopdf
 fi

@@ -21,8 +21,9 @@ def application(request):
 	request data, with keys 'base64_html' and 'options'.
 	The application will return a response with the PDF file.
 	"""
+
 	if request.method != 'POST':
-		return
+		return Response('UP')
 
 	request_is_json = request.content_type.endswith('json')
 
@@ -74,15 +75,13 @@ def application(request):
 		# Execute the command using executor
 		execute(cmd)
 
-		return Response(
-			wrap_file(request.environ, open(file_name + '.pdf')),
-			mimetype='application/pdf',
-		)
+		# send response
+		return Response(wrap_file(request.environ, open(file_name + '.pdf')), mimetype='application/pdf')
 
 
 if __name__ == '__main__':
+
 	from werkzeug.serving import run_simple
-	run_simple(
-		'127.0.0.1', 5000, application, use_debugger=True, use_reloader=True
-	)
+
+	run_simple('127.0.0.1', 5000, application, use_debugger=True, use_reloader=True)
 	

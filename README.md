@@ -36,7 +36,7 @@ curl -X POST -vv -F 'file=@test.html' http://localhost:PORT -o test.pdf
 
 	// curl options
 	$options = [
-		CURLOPT_URL            => http://wkhtmltopdf/,
+		CURLOPT_URL            => "http://wkhtmltopdf/",
 		CURLOPT_PORT           => 80,
 		CURLOPT_POST           => 1,
 		CURLOPT_POSTFIELDS     => $body,

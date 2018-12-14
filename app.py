@@ -49,7 +49,7 @@ def application(request):
 		# Add Global Options
 		if options:
 
-			for option, value in options.items():
+			for option, value in list(options.items()):
 
 				# uppercase consider single hyphen
 				if option.isupper():
@@ -70,7 +70,7 @@ def application(request):
 
 		cmd = ' '.join(args)
 
-		print "Executing > " + cmd
+		print("Executing > " + cmd)
 
 		# Execute the command using executor
 		execute(cmd)
@@ -84,4 +84,3 @@ if __name__ == '__main__':
 	from werkzeug.serving import run_simple
 
 	run_simple('127.0.0.1', 5000, application, use_debugger=True, use_reloader=True)
-	

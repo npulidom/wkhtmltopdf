@@ -11,7 +11,7 @@ import tempfile
 
 from werkzeug.wsgi import wrap_file
 from werkzeug.wrappers import Request, Response
-from executor import execute
+from executor import execute, ExternalCommandFailed
 
 @Request.application
 def application(request):
@@ -73,7 +73,15 @@ def application(request):
 		print("Executing > " + cmd)
 
 		# Execute the command using executor
-		execute(cmd)
+		try:
+			execute(cmd, capture=True, capture_stderr=True)
+
+		except ExternalCommandFailed as e:
+			if 'Done' in e.error_message and 'ProtocolUnknownError' in e.error_message:
+				# some external media not loaded but it actually produced a PDF
+				pass
+			else:
+				raise e
 
 		# send response
 		return Response(wrap_file(request.environ, open(file_name + '.pdf', 'rb')), mimetype='application/pdf')

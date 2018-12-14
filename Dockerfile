@@ -14,6 +14,4 @@ COPY app.py .
 
 EXPOSE 80
 
-ENTRYPOINT ["/usr/local/bin/gunicorn"]
-
-CMD ["-b", "0.0.0.0:80", "--log-file", "-", "app:application"]
+CMD ["/usr/local/bin/gunicorn", "-b", "0.0.0.0:80", "--log-file", "-", "app:application"]

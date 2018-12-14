@@ -76,7 +76,7 @@ def application(request):
 		execute(cmd)
 
 		# send response
-		return Response(wrap_file(request.environ, open(file_name + '.pdf')), mimetype='application/pdf')
+		return Response(wrap_file(request.environ, open(file_name + '.pdf', 'rb')), mimetype='application/pdf')
 
 
 if __name__ == '__main__':

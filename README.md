@@ -8,6 +8,14 @@ docker build .
 docker run -p 8080:80 vicai/wkhtmltopdf
 ```
 
+Now point who ever needs to connect to this service (for example vic-api), to http://localhost:8080
+
+E.g, in vic-api .envrc file:
+
+```
+export WKHTMLTOPDF_URL=http://localhost:8080
+```
+
 # From forked repo
 
 Alpine container service for [wkhtmltopdf](https://wkhtmltopdf.org/).   

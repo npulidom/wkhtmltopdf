@@ -1,6 +1,15 @@
 wkhtmltopdf Microservice
 ========================
 
+# Quickstart:
+
+```
+docker build .
+docker run -p 8080:80 vicai/wkhtmltopdf
+```
+
+# From forked repo
+
 Alpine container service for [wkhtmltopdf](https://wkhtmltopdf.org/).   
 Uncompressed size: 209 MB.
 

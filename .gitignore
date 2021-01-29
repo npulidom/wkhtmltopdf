@@ -1,8 +1,4 @@
-# Linux, OSX
-*~
-*.swp
-.DS_Store
-
 # files
+*~
 *.log
 *.pyc

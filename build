@@ -1,9 +1,8 @@
-#!/bin/sh
+#! /bin/bash
+
+TAG="${1:-latest}"
+OPTS="${2:-}"
 
 # build
-docker build -t npulidom/wkhtmltopdf .
-
-# push image to docker hub
-if [ "$#" -ne 0 ] && [ "$1" = "push" ]; then
-	docker push npulidom/wkhtmltopdf
-fi
+docker build $OPTS -t npulidom/wkhtmltopdf:$TAG .
+echo -e "Build success"

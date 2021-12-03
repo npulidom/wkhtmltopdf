@@ -1,13 +1,13 @@
 wkhtmltopdf Microservice
 ========================
 
-Alpine container service for [wkhtmltopdf](https://wkhtmltopdf.org/).   
+Alpine container service for [wkhtmltopdf](https://wkhtmltopdf.org/).
 Uncompressed size: 209 MB.
 
 ## Usage
 
 Run Container
-`docker run -d npulidom/img-api`
+`docker run -d npulidom/wkhtmltopdf`
 
 Replace **PORT** with container exposed port.
 

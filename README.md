@@ -7,12 +7,12 @@ Uncompressed size: 209 MB.
 ## Usage
 
 Run Container
-`docker run -d npulidom/wkhtmltopdf`
+`docker run -d -p 8080:80 npulidom/wkhtmltopdf`
 
-Replace **PORT** with container exposed port.
+Replace **{PORT}** with container exposed port.
 
 ```
-curl -X POST -vv -F 'file=@test.html' http://localhost:PORT -o test.pdf
+curl -X POST -vv -F 'file=@test.html' http://localhost:{PORT} -o test.pdf
 ```
 
 ### PHP example

@@ -1,12 +1,12 @@
 # OS
-FROM alpine:3.6
+FROM alpine:3.11
 LABEL maintainer="nicolas.pulido@crazycake.cl"
 
 # packages
 RUN apk update && apk add -U --no-cache --repository=http://dl-4.alpinelinux.org/alpine/edge/testing --allow-untrusted \
 	bash \
-	python \
-	py-pip \
+	python2 \
+	py2-pip \
 	xvfb \
 	dbus \
 	fontconfig \

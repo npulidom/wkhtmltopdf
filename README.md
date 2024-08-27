@@ -1,7 +1,7 @@
 # wkhtmltopdf microservice
 
 Alpine container service for [wkhtmltopdf](https://wkhtmltopdf.org/).
-Uncompressed size: 209 MB.
+Uncompressed size: 230 MB.
 
 ## Usage
 

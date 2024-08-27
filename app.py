@@ -1,6 +1,6 @@
 #! /usr/bin/env python
 """
-	WSGI APP to convert wkhtmltopdf As a webservice
+	WSGI APP to convert wkhtmltopdf as a webservice
 	:copyright: (c) 2013 by Openlabs Technologies & Consulting (P) Limited
 	:license: BSD, see LICENSE for more details.
 	:link: https://github.com/openlabs/docker-wkhtmltopdf-aas
@@ -66,11 +66,11 @@ def application(request):
 
 		# Add source file name and output file name
 		file_name = source_file.name
-		args += [file_name, file_name + ".pdf"]
+		args += [file_name, '%s.pdf' % file_name]
 
 		cmd = ' '.join(args)
 
-		print "Executing > " + cmd
+		print('app: executing cmd=%s' % cmd)
 
 		# Execute the command using executor
 		execute(cmd)
@@ -84,4 +84,3 @@ if __name__ == '__main__':
 	from werkzeug.serving import run_simple
 
 	run_simple('127.0.0.1', 5000, application, use_debugger=True, use_reloader=True)
-	

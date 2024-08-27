@@ -21,6 +21,8 @@ Replace **{PORT}** with container exposed port.
 
 ```bash
 curl -X POST -vv -F 'file=@test.html' http://localhost:{PORT} -o test.pdf
+
+curl -X POST -vv http://localhost:8080 -H 'Content-type: application/json' -d '{"contents":"PGh0bWw+PGJvZHk+SGVsbG8gd29ybGQhPC9ib2R5PjwvaHRtbD4="}' -o file.pdf
 ```
 
 ### PHP example

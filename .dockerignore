@@ -2,5 +2,6 @@
 .*
 *.md
 *.log
+*.pdf
 build
 LICENSE
